@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+.fast {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+#themecolors .selector,
+.cursor {
+  cursor: pointer;
+}
+
+#google-btn {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.img-avatar {
+  width: 200px;
+
+  border: 2px solid #ccc;
+
+  border-radius: 4px;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.file-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.w100 {
+  width: 100px;
+}
+
+.w50 {
+  width: 50px;
+}
+
+th,
+tr {
+  text-align: center;
+}
+
+.table-bordered td,
+.table-bordered th {
+  vertical-align: middle !important;
+}

@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search user..."
+          #txtTerm
+          (keyup)="search(txtTerm.value)"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="animate__animated animate__bounce" *ngIf="loading">
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading"></h4>
+      <p>Cargando</p>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Por favor espere</p>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="!loading">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Total Users ({{ totalUsers }})</h4>
+        <h6 class="card-subtitle">Users registered in the system</h6>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="w100">Avatar</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Rol</th>
+                <th>Auth</th>
+                <th class="text-nowrap w100">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>
+                  <img [src]="user.getImg" class="w50 img-circle" />
+                </td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.name }}</td>
+                <td class="w100">{{ user.role }}</td>
+                <td class="w100">
+                  <span *ngIf="user.google" class="label label-danger"
+                    >Google</span
+                  >
+                  <span *ngIf="!user.google" class="label label-info"
+                    >Email</span
+                  >
+                </td>
+
+                <td class="text-nowrap">
+                  <a href="#" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+                  <a href="#" data-toggle="tooltip" data-original-title="Close">
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button (click)="changePage(-5)" class="btn btn-secondary">
+            Back
+          </button>
+          &nbsp;
+          <button (click)="changePage(5)" class="btn btn-secondary">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
