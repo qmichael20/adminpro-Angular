@@ -167,4 +167,18 @@ export class UserService {
       })
     );
   }
+
+  deleteUser(user: User) {
+    const url = `${base_url}/users/${user.id}`;
+
+    return this.http.delete(url, { headers: this.headers });
+  }
+
+  saveUser(user: User) {
+
+    const url = `${base_url}/users/${user.id}`;
+
+    return this.http.put(url, user, { headers: this.headers })
+
+  }
 }

@@ -46,11 +46,26 @@
             <tbody>
               <tr *ngFor="let user of users">
                 <td>
-                  <img [src]="user.getImg" class="w50 img-circle" />
+                  <img
+                    [src]="user.getImg"
+                    class="w50 img-circle cursor"
+                    (click)="openModal(user)"
+                  />
                 </td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
-                <td class="w100">{{ user.role }}</td>
+
+                <td class="w140">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="user.role"
+                    (change)="changeRole(user)"
+                  >
+                    <option value="ADMIN_ROLE">Admin</option>
+                    <option value="USER_ROLE">User</option>
+                  </select>
+                </td>
+
                 <td class="w100">
                   <span *ngIf="user.google" class="label label-danger"
                     >Google</span
@@ -61,10 +76,15 @@
                 </td>
 
                 <td class="text-nowrap">
-                  <a href="#" data-toggle="tooltip" data-original-title="Edit">
+                  <!-- <a data-toggle="tooltip" data-original-title="Edit">
                     <i class="fa fa-pencil text-inverse m-r-10"></i>
-                  </a>
-                  <a href="#" data-toggle="tooltip" data-original-title="Close">
+                  </a> -->
+                  <a
+                    class="cursor"
+                    (click)="deleteUser(user)"
+                    data-toggle="tooltip"
+                    data-original-title="Delete"
+                  >
                     <i class="fa fa-close text-danger"></i>
                   </a>
                 </td>
@@ -72,13 +92,15 @@
             </tbody>
           </table>
 
-          <button (click)="changePage(-5)" class="btn btn-secondary">
-            Back
-          </button>
-          &nbsp;
-          <button (click)="changePage(5)" class="btn btn-secondary">
-            Next
-          </button>
+          <div *ngIf="txtTerm.value.length === 0">
+            <button (click)="changePage(-5)" class="btn btn-secondary">
+              Back
+            </button>
+            &nbsp;
+            <button (click)="changePage(5)" class="btn btn-secondary">
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
